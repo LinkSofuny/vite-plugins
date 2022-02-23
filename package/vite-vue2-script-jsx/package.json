@@ -1,6 +1,6 @@
 {
-  "name": "vue2-script-jsx",
-  "version": "1.0.0",
+  "name": "vite-vue2-script-jsx",
+  "version": "1.0.1",
   "description": "这是一个自动批量帮你添加 jsx 标签的脚本文件, 主要是解决vite下 vue2中vue文件无法使用jsx的情况",
   "main": "index.js",
   "type": "module",
