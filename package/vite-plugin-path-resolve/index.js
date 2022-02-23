@@ -2,10 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-function getPath(dir) {
-    // 这个函数vite不允许拆分
-    return path.resolve(path.dirname(fileURLToPath(import.meta.url)), dir)
-}
 function joinFolderPath(unverifyPath, childFile = 'index.js') {
     const getFile = path.resolve(unverifyPath, childFile)
     try {

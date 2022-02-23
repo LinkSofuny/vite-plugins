@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "enquirer": "^2.3.6"
+  }
+}

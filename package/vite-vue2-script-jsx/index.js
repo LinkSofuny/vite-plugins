@@ -1,10 +1,12 @@
-const { parseComponent } = require('vue-template-compiler')
-const fs = require('fs')
-const fse = require('fs-extra') // 更好的语法
-const path = require('path')
+import { parseComponent } from 'vue-template-compiler'
+import enquirer from 'enquirer'
+const { prompt } = enquirer
+import fs from 'fs'
+import fse from 'fs-extra'
+import path from 'path'
 
 const aimFile = []
-
+let include = []
 function validateHtmlTag(str) {
     const reg = /<(?:(?:\/?[A-Za-z]\w*\b(?:[=\s](['"]?)[\s\S]*?\1)*)|(?:!--[\s\S]*?--))\/?>/g //验证规则
     return reg.test(str)
@@ -19,13 +21,12 @@ function transformCode(code) {
 }
 
 function isInclude(path) {
-    const include = ['components', 'views']
     return include.some((item) => path.indexOf(item) > -1)
 }
 
 function getRootFloderArr(basePath) {
     const baseStatus = fs.statSync(basePath)
-    if (!baseStatus.isDirectory()) return
+    if (!baseStatus.isDirectory()) return [basePath]
     if (fse.existsSync(basePath)) {
         const folderArr = fse.readdirSync(basePath)
         const aimArr = folderArr
@@ -44,7 +45,6 @@ function getFile(rootFolderArr, basePath = '') {
     let i = 0
     while (i < rootFolderArr.length) {
         const currentPath = basePath + '/' + rootFolderArr[i]
-        fse.existsSync()
         const status = fs.statSync(currentPath)
 
         if (status.isDirectory(currentPath)) {
@@ -90,8 +90,30 @@ function flatArr(rootFolderArr) {
     return res
 }
 
-function main() {
-    const basePath = path.resolve(__dirname)
+function validate (basePath) {
+    const folderStatus = fse.statSync(basePath)
+    return folderStatus.isDirectory()
+}
+
+export default async function main({
+    includes = [],
+    basePath = ''
+}) {
+    if (!validate(basePath)) {
+        throw new Error('the basePath must be required a directory')
+    }
+
+    const { yes } = await prompt({
+        type: 'confirm',
+        name: 'yes',
+        message: `This will change the files of your project, do you want to continue? `,
+    })
+
+    if (!yes) {
+        return
+    }
+    
+
     // 待处理的总文件夹
     let rootFolderArr = getRootFloderArr(basePath)
     rootFolderArr = flatArr(rootFolderArr)
@@ -99,5 +121,3 @@ function main() {
     getFile(rootFolderArr)
     checkFileType()
 }
-
-main()
