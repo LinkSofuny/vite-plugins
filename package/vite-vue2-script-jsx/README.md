@@ -7,8 +7,10 @@
 具体抛错信息如下: 
 > [Vite] The JSX syntax extension is not currently enabled
 
+![error.png](https://github.com/LinkSofuny/vite-plugins/blob/master/package/images/error.png)
+
 目前该抛错一下的解决办法: 
-1. vite配置文件加上该plugins(对我无用)
+1. vite配置文件加上该plugin(对我无用)
 ```js
 vite.config.js => plugins: [createVuePlugin({ jsx: true })]
 ```
