@@ -10,12 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/LinkSofuny/vite-plugins/tree/master/package/vite-plugin-path-resolve"
   },
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/LinkSofuny/vite-plugins/issues"
   },
   "homepage": "https://github.com/LinkSofuny/vite-plugins/tree/master/package/vite-plugin-path-resolve#readme",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "@types/node": "^17.0.23"
+  }
 }
