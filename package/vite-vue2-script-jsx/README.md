@@ -2,7 +2,7 @@
  <h1>vite-vue2-script-jsx</h1>
 </div>
 
-**请注意这是一个脚本, 不是vite的插件**, 这个脚本用于解决在`Vue2` + `Webpack`的项目迁移至`Vite`的时候, `Vite`无法识别JSX语法的场景.
+**请注意这是一个脚本, 不是vite的插件**, 这个脚本用于解决在`Vue2` + `Webpack`的项目迁移至`Vite`的时候, `Vite`无法识别JSX语法的场景. 我十分推荐你直接使用插件[lang-jsx](https://github.com/caoxiemeihao/vite-plugins/tree/main/packages/lang-jsx)
 
 具体抛错信息如下: 
 > [Vite] The JSX syntax extension is not currently enabled
